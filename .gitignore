@@ -1,0 +1,6 @@
+/cfgquill
+/cfgquill.exe
+bin/
+*.exe
+*.test
+*.out
