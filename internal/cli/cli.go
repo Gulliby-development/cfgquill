@@ -1,6 +1,8 @@
 package cli
 
 import (
+	"runtime"
+
 	"github.com/Gulliby-development/cfgquill/internal/base"
 	"github.com/Gulliby-development/cfgquill/internal/cmd"
 	"github.com/Gulliby-development/cfgquill/internal/lint"
@@ -19,6 +21,10 @@ const Usage = "usage: cfgquill list FILE\n" +
 func Run(argv []string, io base.IO) int {
 	if len(argv) == 1 && argv[0] == "--help" {
 		io.Out(Usage)
+		return 0
+	}
+	if len(argv) == 1 && argv[0] == "--version" {
+		io.Out("cfgquill built with " + runtime.Version() + "\n")
 		return 0
 	}
 	if len(argv) == 0 {

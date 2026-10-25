@@ -20,7 +20,7 @@ On Windows, build a Windows executable with:
 go build -o cfgquill.exe .
 ```
 
-The project uses only the Go standard library. The build needs the source checkout and Go toolchain; the cfgquill executable itself is offline and makes no network requests. Run `./cfgquill` on macOS or Linux. In PowerShell use `.\cfgquill.exe`, and in Command Prompt use `cfgquill.exe`; alternatively, put the executable on your `PATH` and use `cfgquill` as in the examples below. No change to `go.mod` is needed.
+The project uses only the Go standard library. The build needs the source checkout and Go toolchain; the cfgquill executable itself is offline and makes no network requests. Run `./cfgquill` on macOS or Linux. In PowerShell use `.\cfgquill.exe`, and in Command Prompt use `cfgquill.exe`; alternatively, put the executable on your `PATH` and use `cfgquill` as in the examples below. The `go.mod` file names the Go release (`go 1.27`) and the toolchain (`toolchain go1.27.0`) the project is built with; no other change to `go.mod` is needed.
 
 ## Usage
 
@@ -65,6 +65,8 @@ A file argument of `-` reads standard input instead. For example, in a POSIX-sty
 cfgquill accepts strict UTF-8 configuration text. Its blank characters are space, TAB, LF, and CR; other Unicode characters that may look like spaces or line breaks remain ordinary text. In values, `#` and `;` start comments outside double quotes, quoted text can retain blanks, and a backslash followed by LF continues a value onto the next line. These are the configuration rules implemented by cfgquill; the tool does not claim to implement every Git configuration feature.
 
 ## Commands
+
+`cfgquill --version` prints one line, `cfgquill built with` and the Go release that built the executable (for example `cfgquill built with go1.27.0`), and exits 0; it is accepted only as the single argument.
 
 The command names and argument forms are printed by `cfgquill --help`:
 
