@@ -53,7 +53,17 @@ func Findings(text string, f config.File) []problem.Problem {
 		}
 	}
 
+	seenHeader := make(map[string]int)
 	for _, header := range f.Headers {
+		if line, ok := seenHeader[header.Name]; ok {
+			found = append(found, problem.Problem{
+				Line: header.Line,
+				Code: "CQ106",
+				Text: "repeated section " + base.Show(header.Name) + " (first at line " + strconv.Itoa(line) + ")",
+			})
+		} else {
+			seenHeader[header.Name] = header.Line
+		}
 		if header.Count == 0 {
 			found = append(found, problem.Problem{
 				Line: header.Line,
